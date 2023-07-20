@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "sort.h"
 
 /**
@@ -17,7 +15,7 @@ void bubble_sort(int *array, size_t size)
 	if (array)
 	{
 		if (size < 2)
-			print_array(array, size);
+			return;
 		else
 		{
 			while (!sorted)
