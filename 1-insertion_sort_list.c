@@ -15,32 +15,29 @@ void insertion_sort_list(listint_t **list)
 	if (list && *list)
 	{
 		if (!(*list)->next)
-			print_list(*list);
-		else
+			return;
+
+		current = *list;
+		next = current->next;
+
+		while (next)
 		{
-			current = *list;
-			next = current->next;
-
-			while (next)
+			if (current->n > next->n)
 			{
-				if (current->n > next->n)
+				swap(current, next, list);
+				print_list(*list);
+
+				current = current->prev;
+				prev = current->prev;
+				while (prev && current && current->n < prev->n)
 				{
-					swap(current, next, list);
+					swap(prev, current, list);
 					print_list(*list);
-
-					current = current->prev;
 					prev = current->prev;
-					while (prev && current && current->n < prev->n)
-					{
-						swap(prev, current, list);
-						print_list(*list);
-
-						prev = current->prev;
-					}
 				}
-				current = next;
-				next = current->next;
 			}
+			current = next;
+			next = current->next;
 		}
 	}
 }
