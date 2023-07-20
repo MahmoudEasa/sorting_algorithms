@@ -46,7 +46,7 @@ void insertion_sort_list(listint_t **list)
 }
 
 /**
- * swap - swap tow nodes
+ * swap - swap two nodes
  * @node1: first node
  * @node2: second node
  * @list: the head of the list
