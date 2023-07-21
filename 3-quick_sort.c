@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "sort.h"
 
 /**
@@ -45,13 +46,15 @@ void swap_in_arr(int *array, size_t i, size_t j)
 void sort_help(int *array, size_t first, size_t last, size_t size)
 {
 	size_t p;
+	int hi = (int)last;
 
-	if (first < last)
-	{
-		p = partition(array, first, last, size);
-		sort_help(array, first, p, size);
-		sort_help(array, p + 1, last, size);
-	}
+	if (first >= last || hi < 0)
+		return;
+
+	p = partition(array, first, last, size);
+
+	sort_help(array, first, p - 1, size);
+	sort_help(array, p + 1, last, size);
 }
 
 /**
@@ -66,25 +69,21 @@ void sort_help(int *array, size_t first, size_t last, size_t size)
 
 size_t partition(int *array, size_t first, size_t last, size_t size)
 {
-	int mid = (first + last) / 2, pivot;
+	int pivot = array[last];
 	size_t i, j;
 
-	pivot = array[mid];
-	i = first;
-	j = last;
+	i = first - 1;
 
-	while (1)
-	{
-		while (array[i] < pivot)
+	for (j = first; j < last; j++)
+		if (array[j] <= pivot)
+		{
 			i++;
-		while (array[j] > pivot)
-			j--;
-
-		if (i >= j)
-			return (j);
-
-		swap_in_arr(array, i, j);
-		print_array(array, size);
-	}
+			if (i != j)
+				swap_in_arr(array, i, j);
+		}
+	i++;
+	swap_in_arr(array, i, last);
+	print_array(array, size);
+	return (i);
 }
 
