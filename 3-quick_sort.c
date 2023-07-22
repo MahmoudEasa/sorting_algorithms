@@ -79,11 +79,17 @@ size_t partition(int *array, size_t first, size_t last, size_t size)
 		{
 			i++;
 			if (i != j)
+			{
 				swap_in_arr(array, i, j);
+				print_array(array, size);
+			}
 		}
 	i++;
-	swap_in_arr(array, i, last);
-	print_array(array, size);
+	if (i != last)
+	{
+		swap_in_arr(array, i, last);
+		print_array(array, size);
+	}
 	return (i);
 }
 
