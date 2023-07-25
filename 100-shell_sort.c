@@ -15,7 +15,7 @@ void shell_sort(int *array, size_t size)
 	int temp, swap = 0;
 	size_t i, j, h = 1;
 
-	if (size < 2)
+	if (!array || size < 2)
 		return;
 
 	while ((h <= size / 3) && (size > 4))
