@@ -22,12 +22,12 @@ void counting_sort(int *array, size_t size)
 		if (array[i] > k)
 			k = array[i];
 
-	count = (int *)malloc(sizeof(int) * k + 1);
+	count = (int *)malloc(sizeof(int) * (k + 1));
 	if (!count)
 		exit(1);
 
-	for (i = 0; (int)i <= k; i++)
-		count[i] = 0;
+	for (j = 0; j <= k; j++)
+		count[j] = 0;
 
 	for (j = 0; j <= k; j++)
 		for (i = 0; i < size; i++)
