@@ -37,6 +37,9 @@ void swap_in_arr(int *array, size_t i, size_t j);
 size_t partition(int *array, size_t first, size_t last, size_t size);
 listint_t *sort_next(listint_t **list, int *swapped);
 void sort_prev(listint_t *last, listint_t **list, int *swapped);
+void copy_array(int *array, int *copy, size_t size);
+void split_merge(int *array, int *copy, size_t start, size_t end);
+void merge(int *array, int *copy, size_t start, size_t mid, size_t end);
 
 #endif /* SORT_H */
 
