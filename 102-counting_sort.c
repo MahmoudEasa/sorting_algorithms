@@ -46,5 +46,6 @@ void counting_sort(int *array, size_t size)
 			array[count[array[i] - 1]] = array[i];
 			array[i] = temp;
 		}
+	free(count);
 }
 
