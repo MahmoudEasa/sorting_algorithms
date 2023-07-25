@@ -24,9 +24,6 @@ void counting_sort(int *array, size_t size)
 			k = array[i];
 			sorted = 0;
 		}
-	if (sorted)
-		return;
-
 	count = (int *)malloc(sizeof(int) * k + 1);
 	if (!count)
 		exit(1);
@@ -41,7 +38,11 @@ void counting_sort(int *array, size_t size)
 			count[j] = c;
 		}
 	print_array(count, k + 1);
-
+	if (sorted)
+	{
+		free(count);
+		return;
+	}
 	for (i = 0; i < size; i++)
 		if ((int)i != count[array[i] - 1])
 		{
