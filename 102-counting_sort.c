@@ -11,7 +11,7 @@
 
 void counting_sort(int *array, size_t size)
 {
-	int k, j, *count, c = 0, temp;
+	int k, j, *count, temp, swap = 0;
 	size_t i;
 
 	if (!array || size < 2)
@@ -28,24 +28,27 @@ void counting_sort(int *array, size_t size)
 
 	for (j = 0; j <= k; j++)
 		count[j] = 0;
-
+	for (i = 0; i < size; i++)
+		count[array[i]] += 1;
 	for (j = 0; j <= k; j++)
-		for (i = 0; i < size; i++)
-		{
-			if (j == array[i])
-				c++;
-			count[j] = c;
-		}
+		count[j + 1] += count[j];
 
 	print_array(count, k + 1);
-
-	for (i = 0; i < size; i++)
-		if ((int)i != count[array[i] - 1])
+	while (!swap)
+	{
+		swap = 1;
+		for (i = 0; i < size; i++)
 		{
-			temp = array[count[array[i] - 1]];
-			array[count[array[i] - 1]] = array[i];
-			array[i] = temp;
+			j = count[array[i]] - 1;
+			if (array[i] != array[j])
+			{
+				temp = array[i];
+				array[i] = array[j];
+				array[j] = temp;
+				swap = 0;
+			}
 		}
+	}
 	free(count);
 }
 
