@@ -12,7 +12,7 @@
 
 void shell_sort(int *array, size_t size)
 {
-	int temp, swap = 0;
+	int temp;
 	size_t i, j, h = 1;
 
 	if (!array || size < 2)
@@ -33,16 +33,11 @@ void shell_sort(int *array, size_t size)
 					temp = array[j];
 					array[j] = array[i];
 					array[i] = temp;
-					swap = 1;
 				}
 				j += h;
 			}
 		}
-		if (swap)
-		{
-			print_array(array, size);
-			swap = 0;
-		}
+		print_array(array, size);
 
 		h = h / 3;
 	}
